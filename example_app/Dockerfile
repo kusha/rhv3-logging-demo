@@ -1,6 +1,6 @@
 FROM registry.access.redhat.com/rhel7:latest
 
-LABEL maintainer="Ales Raszka <araszka@redhat.com>"
+LABEL maintainer="Mark Birger <mbirger@redhat.com>"
 LABEL description="Example Flask app"
 LABEL summary="This application just demonstrates running app in Openshift"
 
@@ -35,4 +35,4 @@ RUN chmod -R g=u /home/service /etc/passwd
 EXPOSE 8080
 USER "${USER_UID}"
 
-ENTRYPOINT [ "python", "/usr/bin/flask-app"]
+ENTRYPOINT [ "python", "/opt/app-root/bin/flask-app"]

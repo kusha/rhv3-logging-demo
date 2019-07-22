@@ -7,52 +7,52 @@ objects:
   - kind: Service
     apiVersion: v1
     metadata:
-      name: logging-demo-app
+      name: demo-app
       labels:
-        app: logging-demo-app
-        service: logging-demo-app
+        app: demo-app
+        service: demo-app
     spec:
       ports:
-      - name: logging-demo-app
+      - name: demo-app
         port: 8080
         protocol: TCP
       selector:
-        service: logging-demo-app
+        service: demo-app
 
   - apiVersion: v1
     kind: Route
     metadata:
-      name: logging-demo-app
+      name: demo-app
       labels:
-        app: logging-demo-app
-        service: logging-demo-app
+        app: demo-app
+        service: demo-app
     spec:
       to:
         kind: Service
-        name: logging-demo-app
+        name: demo-app
 
   - apiVersion: v1
     kind: DeploymentConfig
     metadata:
-      name: logging-demo-app
+      name: demo-app
       labels:
-        app: logging-demo-app
-        service: logging-demo-app
+        app: demo-app
+        service: demo-app
     spec:
       replicas: 1
       selector:
-        app: logging-demo-app
+        app: demo-app
       strategy:
         type: Rolling
       template:
         metadata:
           labels:
-            app: logging-demo-app
-            service: logging-demo-app
+            app: demo-app
+            service: demo-app
         spec:
           containers:
-            - name: logging-demo-app
-              image: docker-registry.default.svc:5000/araszka-playground/logging-demo-app:latest
+            - name: demo-app
+              image: docker-registry.default.svc:5000/araszka-playground/demo-app:latest
               imagePullPolicy: Always
               resources:
                 limits:
@@ -79,28 +79,28 @@ objects:
             automatic: true
             from:
               kind: "ImageStreamTag"
-              name: "logging-demo-app:latest"
+              name: "demo-app:latest"
             containerNames:
-              - logging-demo-app
+              - demo-app
 
   - apiVersion: v1
     kind: BuildConfig
     metadata:
       labels:
-        app: logging-demo-app
-      name: logging-demo-app
+        app: demo-app
+      name: demo-app
     spec:
       output:
         to:
           kind: DockerImage
-          name: docker-registry.default.svc:5000/araszka-playground/logging-demo-app:latest
+          name: docker-registry.default.svc:5000/araszka-playground/demo-app:latest
       runPolicy: Serial
       resources:
         limits:
-          memory: "1Gi"
+          memory: "2Gi"
       source:
         git:
-          uri: https://gitlab.cee.redhat.com/mbirger/rhv-3-logging-demo.git
+          uri: https://github.com/kusha/rhv3-logging-demo.git
           ref: master
         contextDir: example_app
         type: Git
