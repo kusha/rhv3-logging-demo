@@ -7,8 +7,8 @@ with open('requirements.txt') as f:
 setup(
     name="flaskApp",
     version="0.0.1",
-    author="araszka",
-    author_email="araszka@redhat.com",
+    author="mbirger",
+    author_email="mbirger@redhat.com",
     description=("Example python app with REST API"),
     license="GPLv3",
     url="https://github.com/redhat-aqe/rhv-2-openshift-demo",
