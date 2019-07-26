@@ -1,8 +1,8 @@
 FROM registry.access.redhat.com/rhel7:latest
 
 LABEL maintainer="Mark Birger <mbirger@redhat.com>"
-LABEL description="Example Flask app"
-LABEL summary="This application just demonstrates running app in Openshift"
+LABEL description="Example Flask app with Kafka logging"
+LABEL summary="Demo app with logging to ELK via Kafka"
 
 ARG USER_UID=1002
 
@@ -15,7 +15,6 @@ RUN yum repolist --disablerepo=* && \
     yum-config-manager --enable rhel-7-server-optional-rpms > /dev/null
 
 RUN yum update -y && \
-    yum install -y python-flask && \
     yum clean all
 
 RUN useradd -ms /bin/bash -u "${USER_UID}" service

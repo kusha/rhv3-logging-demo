@@ -42,8 +42,6 @@ objects:
       replicas: 1
       selector:
         app: demo-app
-      strategy:
-        type: Rolling
       template:
         metadata:
           labels:
@@ -60,12 +58,6 @@ objects:
               ports:
               - containerPort: 8080
                 protocol: TCP
-              readinessProbe:
-                httpGet:
-                  path: /health
-                  port: 8080
-                initialDelaySeconds: 5
-                timeoutSeconds: 1
               livenessProbe:
                 httpGet:
                   path: /health
@@ -97,7 +89,7 @@ objects:
       runPolicy: Serial
       resources:
         limits:
-          memory: "2Gi"
+          memory: "1Gi"
       source:
         git:
           uri: https://github.com/kusha/rhv3-logging-demo.git
@@ -110,4 +102,3 @@ objects:
             kind: DockerImage
             name: rhscl/python-36-rhel7:latest
         type: Docker
-

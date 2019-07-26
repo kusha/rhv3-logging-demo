@@ -6,12 +6,12 @@ with open('requirements.txt') as f:
 
 setup(
     name="flaskApp",
-    version="0.0.1",
+    version="0.0.2",
     author="mbirger",
     author_email="mbirger@redhat.com",
-    description=("Example python app with REST API"),
+    description=("Example python app with Kafka logging"),
     license="GPLv3",
-    url="https://github.com/redhat-aqe/rhv-2-openshift-demo",
+    url="https://github.com/redhat-aqe/rhv-3-logging-demo",
     package_dir={'': 'src'},
     packages=find_packages('src', exclude=('tests',)),
     test_suite='nose.collector',
